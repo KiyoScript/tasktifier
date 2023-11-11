@@ -17,22 +17,28 @@
           </div>
         </div>
         <div class="col-12">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html=> { :class => 'd-flex flex-column gap-4 mt-4' } )  do |f| %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'd-flex flex-column gap-4 mt-4', novalidate: true, data: { controller: 'sign-up-form', turbo: false }}) do |f| %>
             <div class="form-group">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email Address" %>
+              <%= f.label :email %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+              <div class="invalid-feedback">Invalid email</div>
             </div>
             <div class="form-group">
-              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password" %>
+              <%= f.label :password %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
+              <div class="invalid-feedback">Minimum of 6 characters</div>
             </div>
             <div class="form-group">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password"  %>
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+              <div class="invalid-feedback">Password confirmation doesn't match</div>
             </div>
             <div class="form-group">
               <%= f.submit "Sign Up", class: "btn btn-primary btn-block w-100" %>
             </div>
           <% end %>
-        <hr>
-        <hr>
+          <hr>
+          <hr>
         </div>
         <div class="col-12 d-flex align-items-center justify-content-center flex-column">
           <%= render "devise/shared/links" %>
