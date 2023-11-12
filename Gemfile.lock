@@ -77,6 +77,11 @@ GEM
     bootstrap (5.3.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
+    bootstrap-icons (1.0.13)
+      nokogiri (~> 1)
+    bootstrap-icons-helper (2.0.1)
+      bootstrap-icons (~> 1)
+      rails (>= 6)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -246,6 +251,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (~> 5.3)
+  bootstrap-icons-helper
   capybara
   debug
   devise (~> 4.9)
