@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: tasktifier_production
-  username: tasktifier
-  password: <%= ENV["TASKTIFIER_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  # database: tasktifier_production
+  # username: tasktifier
+  # password: <%= ENV["TASKTIFIER_DATABASE_PASSWORD"] %>
