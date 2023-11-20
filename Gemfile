@@ -75,3 +75,5 @@ end
 
 # Authentication Gem
 gem "devise", "~> 4.9"
+
+gem "redis", "~> 5.0"
