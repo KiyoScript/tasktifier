@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col min-vh-100 py-3">
+      <div class="row">
+        <div class="col-8 col-lg-9">
+          <button class="btn btn-outline-primary d-none d-md-inline" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <%= bootstrap_icon 'list' %>
+          </button>
+        </div>
+        <div class="col-4 col-lg-3">
+          <button type="button" class="btn btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#new_task_modal">
+          Add task
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="new_task_modal" tabindex="-1" aria-labelledby="new_task_modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <%= turbo_frame_tag :new_task_frame, src: new_task_path do %>
+                  Loading...
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     <!-- Button trigger modal -->
+      <div class="container">
+        <nav class="nav nav-tabs gap-2 flex-row flex-nowrap overflow-auto py-2" style="overflow-y: hidden !important;">
+          <a class="nav-link text-nowrap active" data-bs-toggle="tab" href="#all" role="tab" aria-selected="true">All</a>
+          <a class="nav-link text-nowrap" data-bs-toggle="tab" href="#gclass" role="tab" aria-selected="true">Google Classroom</a>
+          <a class="nav-link text-nowrap" data-bs-toggle="tab" href="#work" role="tab" aria-selected="false">Work</a>
+          <a class="nav-link text-nowrap" data-bs-toggle="tab" href="#personal" role="tab" aria-selected="false">Personal</a>
+          <a class="nav-link text-nowrap" data-bs-toggle="tab" href="#wishlist" role="tab" aria-selected="false">Wishlist</a>
+        </nav>
+
+        <div class="tab-content pt-2">
+          <div class="tab-pane fade show active" id="all" role="tabpanel">
+            <% unless @tasks.present? %>
+              <div class="d-flex flex-column align-items-center justify-content-center p-5">
+                <%= image_tag 'task', class:'img-fluid'%>
+                <p>Welcome, <span style="color: #514c85"><%= current_user.email.split('@')[0] %>!</span> Let's get started on your tasks!</p>
+              </div>
+            <% else %>
+              <div class="w-100 pt-2" data-bs-toggle="collapse" href="#future" role="button" aria-expanded="false" aria-controls="future">
+                <a class="text-decoration-none nav-link ">
+                  <span class="ms-1 text-light dropdown-toggle">Future</span>
+                </a>
+                <%= render partial: 'tasks/task', collection: @tasks %>
+              </div>
+            <% end %>
+          </div>
+          <div class="tab-pane fade" id="gclass" role="tabpanel">
+            <p>GClassroom task</p>
+          </div>
+          <div class="tab-pane fade" id="work" role="tabpanel">
+            <p>Work task</p>
+          </div>
+          <div class="tab-pane fade" id="personal" role="tabpanel">
+            <p>Personal task</p>
+          </div>
+          <div class="tab-pane fade" id="wishlist" role="tabpanel">
+            <p>Wishlist task</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile View  -->
+      <ul class="list-group list-group-horizontal bg-primary d-md-none fixed-bottom">
+        <li class="list-group-item d-md-none d-flex align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style='background-color: #514c85'>
+            <%= bootstrap_icon 'list' %>
+        </li>
+        <li class="list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100">
+          <%= bootstrap_icon 'list-task' %>
+          <p class="mb-0" style="font-size: .5rem">Tasks</p>
+        </li>
+        <li class="list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100">
+          <%= bootstrap_icon 'calendar-date' %>
+          <p class="mb-0" style="font-size: .5rem">Calendar</p>
+        </li>
+        <li class="list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100">
+          <%= bootstrap_icon 'person' %>
+          <p class="mb-0" style="font-size: .5rem">Mine</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

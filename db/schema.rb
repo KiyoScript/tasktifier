@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_125212) do
     t.datetime "due_date"
     t.text "notes"
     t.integer "repeat", default: 0
+    t.integer "mark_as_done", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

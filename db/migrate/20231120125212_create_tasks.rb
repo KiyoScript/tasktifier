@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.datetime :due_date
       t.text :notes
       t.integer :repeat, default: 0
+      t.integer :mark_as_done, default: 0
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
