@@ -6,6 +6,9 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.text :notes
       t.integer :repeat, default: 0
       t.integer :mark_as_done, default: 0
+      t.integer :starred, default: 0
+      t.text :notify
+      t.string :attachment
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

@@ -4,14 +4,14 @@
       <div class="form-group">
         <div class="mb-3">
           <%= form.label :title, class: 'form-label' %>
-          <%= form.text_field :title, class: 'form-control', placeholder: 'Input new task here...', id: 'task_title' %>
+          <%= form.text_field :title, class: 'form-control bg-dark text-light', placeholder: 'Input new task here...', id: 'task_title' %>
         </div>
         <div class="mb-3">
           <%= form.label :category, class: 'form-label' %>
-          <%= form.select :category, ['No Category', 'Work', 'Personal', 'Wishlist', 'Birthday'], { include_blank: 'No Category' }, class: 'form-select', id: 'category' %>        </div>
+          <%= form.select :category, ['Work', 'Personal', 'Wishlist', 'Birthday'], { include_blank: 'No Category' }, class: 'form-select bg-dark text-light', id: 'category' %>        </div>
         <div class="mb-3">
           <%= form.label :due_date, class: 'form-label' %>
-          <%= form.date_field :due_date, class: 'form-control', id: "due_date", value: Date.tomorrow %>
+          <%= form.date_field :due_date, class: 'form-control bg-dark text-light', id: "due_date", value: Date.tomorrow %>
         </div>
       </div>
       <div class="modal-footer">

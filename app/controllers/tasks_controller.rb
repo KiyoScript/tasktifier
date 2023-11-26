@@ -1,8 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task
-  before_action :ensure_frame_response, only: [:new, :edit]
-
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
   end
@@ -20,7 +18,7 @@ class TasksController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.prepend('tasks', partial: 'tasks/task', locals: { task: @task }) }
         format.html { redirect_to root_path, notice: "Task added successfully!" }
       else
-        format.html { redirect_to root_path, alert: "Something went wrong!" }
+        format.html { redirect_to root_path, alert: "Oops! Something went wrong while adding the task." }
       end
     end
   end
@@ -31,7 +29,7 @@ class TasksController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: 'tasks/task', locals: { task: @task }) }
         format.html { redirect_to root_path, notice: "Task updated successfully!" }
       else
-        format.html { redirect_to root_path, alert: "Something went wrong!" }
+        format.html { redirect_to root_path, alert: "Oops! Something went wrong while updating the task." }
       end
     end
   end
@@ -39,10 +37,9 @@ class TasksController < ApplicationController
   def destroy
     respond_to do |format|
       if @task.destroy
-        format.turbo_stream { render turbo_stream: turbo_stream.remove(@task) }
         format.html { redirect_to root_path, notice: "Task deleted successfully!" }
       else
-        format.html { redirect_to root_path, alert: "Something went wrong!" }
+        format.html { redirect_to root_path, alert: "Oops! Something went wrong while deleting the task." }
       end
     end
   end
@@ -56,12 +53,14 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(
       :title,
-      :due_date
+      :notes,
+      :due_date,
+      :start_time,
+      :starred,
+      :repeat,
+      :mark_as_done,
+      :reminder_at,
+      :attachment
     ).merge(user_id: current_user.id)
-  end
-
-  def ensure_frame_response
-    return unless Rails.env.development?
-    redirect_to root_path unless turbo_frame_request?
   end
 end

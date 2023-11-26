@@ -75,5 +75,5 @@ end
 
 # Authentication Gem
 gem "devise", "~> 4.9"
-
+gem "device_detector"
 gem "redis", "~> 5.0"

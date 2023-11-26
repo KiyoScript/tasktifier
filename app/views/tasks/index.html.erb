@@ -72,10 +72,10 @@
         <li class="list-group-item d-md-none d-flex align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style='background-color: #514c85'>
             <%= bootstrap_icon 'list' %>
         </li>
-        <li class="list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100">
+        <%= link_to tasks_path , class: "list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none" do %>
           <%= bootstrap_icon 'list-task' %>
           <p class="mb-0" style="font-size: .5rem">Tasks</p>
-        </li>
+        <% end %>
         <li class="list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100">
           <%= bootstrap_icon 'calendar-date' %>
           <p class="mb-0" style="font-size: .5rem">Calendar</p>
