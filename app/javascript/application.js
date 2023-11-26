@@ -5,8 +5,13 @@ import "popper"
 import "bootstrap"
 import "flatpicker"
 
-flatpickr("#dateTimePicker", {
-  "dateFormat":"n/j/Y H:i",
-  "enableTime":true,
-  "allowInput":true
+Turbo.setConfirmMethod(()=>{
+  let dialog = document.getElementById("turbo-confirm")
+  dialog.showModal()
+
+  return new Promise((resolve, reject) => {
+    dialog.addEventListener("close", ()=> {
+      resolve(dialog.returnValue == "confirm")
+    }, { once: true })
+  })
 })
