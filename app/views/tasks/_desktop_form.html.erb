@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <%= form_with(model: @task, url: task_path(@task), method: :put, data: { turbo: false }) do |form| %>
+    <div class="form-group">
+      <div class="mb-3 d-flex flex-row justify-content-between">
+        <%= form.select :category, ['Work', 'Personal', 'Wishlist', 'Birthday'], { include_blank: 'No Category' }, class: 'form-select bg-primary p-2 w-50 text-light', id: 'task_category' %>
+        <div class="nav-item dropdown">
+          <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <%= bootstrap_icon 'three-dots-vertical' %>
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Mark as Done</a>
+            <a class="dropdown-item" href="#">Print</a>
+            <a class="dropdown-item" href="#">Start to Focus</a>
+            <div class="dropdown-item">Share</div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <%= form.text_field :title, class: 'form-control bg-body text-light border border-0 px-2', placeholder: 'Input new task here...'%>
+      </div>
+      <div class="mb-4">
+        <div class="list-group-item d-flex justify-content-between align-items-center bg-dark border border-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+          <%= bootstrap_icon 'plus', width: '2rem', class: 'mb-1', style:'color: 514c85'%>
+          <span class="ms-1">Add Sub-task</span>
+        </div>
+      </div>
+
+
+      <ul class="list-group ">
+        <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <%= bootstrap_icon 'calendar-event', style:'color: 514c85'%><span class="ms-2 text-light"> Due Date </span>
+          </div>
+          <div class="col-6">
+            <%= form.date_field :due_date, class: 'bg-primary text-light border border-0 px-2', value: Date.tomorrow %>
+          </div>
+        </li>
+        <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <%= bootstrap_icon 'clock-fill', style:'color: 514c85' %><span class="ms-2 text-light">Start Time</span>
+          </div>
+          <div class="col-6">
+            <%= form.time_field :start_time, class: 'bg-primary text-light border border-0 px-2', value: @task&.start_time %>
+          </div>
+        </li>
+        <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <%= bootstrap_icon 'alarm-fill', style:'color: 514c85'%><span class="ms-2 text-light">Reminder</span>
+          </div>
+          <div class="col-6">
+            <%= form.time_field :reminder_at, class: 'bg-primary text-light border border-0 px-2', value: @task&.reminder_at %>
+          </div>
+        </li>
+        <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <%= bootstrap_icon 'arrow-repeat', style:'color: 514c85'%><span class="ms-2 text-light">Repeat Task</span>
+          </div>
+          <div class="col-6">
+            <%= form.select :repeat,Task.repeats.keys.map{ |key| [key.humanize, key] }, {}, class: 'bg-primary text-light border border-0 px-2' %>
+          </div>
+        </li>
+
+
+        <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <%= bootstrap_icon 'card-text', style:'color: 514c85'%><span class="ms-2 text-light">Notes</span>
+          </div>
+          <div class="col-6">
+            <%= form.text_area :notes, class: 'form-control' %>
+          </div>
+        </li>
+
+
+        <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <%= bootstrap_icon 'paperclip', style:'color: 514c85'%><span class="ms-2 text-light">Attachment</span>
+          </div>
+          <div class="col-6">
+            <%= form.file_field :attachment, class: 'form-control' %>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <%= form.submit 'Update', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

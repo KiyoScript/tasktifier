@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_09_014948) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_20_125212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.datetime "due_date"
+    t.text "notes"
+    t.integer "repeat", default: 0
+    t.integer "mark_as_done", default: 0
+    t.integer "starred", default: 0
+    t.text "notify"
+    t.string "attachment"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
@@ -29,4 +44,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_014948) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tasks", "users"
 end

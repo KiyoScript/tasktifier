@@ -8,5 +8,6 @@ Rails.application.config.assets.version = "1.0"
 Rails.application.config.assets.precompile += %w( bootstrap.min.js popper.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
+Rails.application.config.assets.paths << Rails.root.join("vendor", "stylesheets")
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )

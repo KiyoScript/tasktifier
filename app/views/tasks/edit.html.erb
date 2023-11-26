@@ -1,0 +1,7 @@
+<%= turbo_frame_tag :edit_task_frame do %>
+  <% if desktop_device? %>
+    <%= render partial: 'tasks/desktop_form', local: { task: @task } %>
+  <% else %>
+    <%= render partial: 'tasks/mobile_form', local: { task: @task } %>
+  <% end %>
+<% end %>
