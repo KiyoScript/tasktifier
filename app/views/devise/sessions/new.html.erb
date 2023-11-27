@@ -16,7 +16,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 ms-3">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'd-flex flex-column gap-4 mt-4', novalidate: true, data: { controller: 'sign-in-form' }}) do |f| %>
             <div class="form-group">
               <%= f.label :email, class: "form-label" %>

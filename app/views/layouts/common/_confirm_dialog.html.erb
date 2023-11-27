@@ -1,9 +1,12 @@
-<dialog id="turbo-confirm" class="bg-dark border border-primary p-4">
+<dialog id="turbo-confirm" class="bg-body border border-dark">
   <form method="dialog">
-    <p class="text-white text-center">Are you sure?</p>
-    <div class="d-flex justify-content-center">
-      <button class="btn btn-outline-secondary btn-lg mx-2" value="cancel">Cancel</button>
-      <button class="btn btn-primary btn-lg mx-2" value="confirm">Confirm</button>
+    <div class="text-end mb-4">
+      <button class="btn-close" value="cancel"></button>
+    </div>
+    <p class="px-5 text-warning">Are you sure?</p>
+    <div class="text-end pt-4">
+      <button class="btn btn-primary px-3 me-1" value="cancel">Cancel</button>
+      <button class="btn btn-secondary" value="confirm">Confirm</button>
     </div>
   </form>
 </dialog>
