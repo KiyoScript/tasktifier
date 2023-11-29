@@ -41,7 +41,7 @@
             <% unless @tasks.present? %>
               <div class="d-flex flex-column align-items-center justify-content-center p-5">
                 <%= image_tag 'task', class:'img-fluid'%>
-                <p>Welcome, <span style="color: #514c85"><%= current_user.email.split('@')[0] %>!</span> Let's get started on your tasks!</p>
+                <p>Welcome, <span style="color: #514c85"><%= username %>!</span> Let's get started on your tasks!</p>
               </div>
             <% else %>
               <div class="w-100 pt-2" data-bs-toggle="collapse" href="#future" role="button" aria-expanded="false" aria-controls="future">
