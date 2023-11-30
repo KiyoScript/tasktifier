@@ -22,7 +22,7 @@
 
     <div class="form-group">
       <div class="mb-3">
-        <%= form.select :category, ['Work', 'Personal', 'Wishlist', 'Birthday'], { include_blank: 'No Category' }, class: 'form-select bg-primary p-2 w-50 text-light', id: 'task_category' %>
+        <%= form.select :category_id, options_for_select(current_user.categories.where.not(id: @task.category_id).pluck(:name, :id)), { include_blank: @task.category.present? ? @task.category.name : 'No Category' }, class: 'form-select bg-dark text-light', id: 'task_category' %>
       </div>
       <div class="mb-4">
         <%= form.text_field :title, class: 'form-control bg-body text-light border border-0 px-2', placeholder: 'Input new task here...'%>

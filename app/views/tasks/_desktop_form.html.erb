@@ -2,7 +2,7 @@
   <%= form_with(model: @task, url: task_path(@task), method: :put, data: { turbo: false }) do |form| %>
     <div class="form-group">
       <div class="mb-3 d-flex flex-row justify-content-between">
-        <%= form.select :category, ['Work', 'Personal', 'Wishlist', 'Birthday'], { include_blank: 'No Category' }, class: 'form-select bg-primary p-2 w-50 text-light', id: 'task_category' %>
+      <%= form.select :category_id, options_for_select(current_user.categories.where.not(id: @task.category_id).pluck(:name, :id)), { include_blank: @task.category.present? ? @task.category.name : 'No Category' }, class: 'form-select bg-dark text-light', id: 'task_category' %>
         <div class="nav-item dropdown">
           <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
             <%= bootstrap_icon 'three-dots-vertical' %>
