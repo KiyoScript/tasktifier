@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def username
+    current_user.email.split('@')[0] unless current_user.nil?
+  end
+
   def desktop_device?
     client = request.user_agent
     device = DeviceDetector.new(client).device_type
