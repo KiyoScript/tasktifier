@@ -1,0 +1,16 @@
+<%= turbo_frame_tag :edit_category_frame do %>
+  <div class="modal-body">
+    <%= form_with(model: @category, data: { turbo: false }) do |form| %>
+      <div class="form-group">
+        <div class="mb-3">
+          <%= form.label :name, class: 'form-label' %>
+          <%= form.text_field :name, class: 'form-control bg-dark text-light', placeholder: 'Input new category here...', id: 'category_name', value: @category.name.capitalize %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <%= form.submit 'Update', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

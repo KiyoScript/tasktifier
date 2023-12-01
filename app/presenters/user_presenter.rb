@@ -8,6 +8,10 @@ class UserPresenter < ApplicationPresenter
   end
 
   def categories
-    @user.categories.pluck(:name)
+    @user.categories
+  end
+
+  def total_tasks
+    @user.tasks.count
   end
 end

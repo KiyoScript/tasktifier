@@ -1,101 +1,85 @@
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header bg-primary">
-    <div class="dropdown">
-      <a href="#" class="nav-link dropdown-toggle " id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="ms-1">
+<%  user = UserPresenter.new(current_user) %>
+<div class='offcanvas offcanvas-start' tabindex='-1' id='sideNav' aria-labelledby='sideNavLabel'>
+  <div class='offcanvas-header bg-primary'>
+    <div class='dropdown'>
+      <a href='#' class='nav-link dropdown-toggle ' id='dropdown' data-bs-toggle='dropdown' aria-expanded='false'>
+        <span class='ms-1'>
           <%= image_tag 'logo', class: 'img-fluid'%>
         </span>
-        <span class="ms-1 text-light"><%= username %></span>
+        <span class='ms-1 text-light'><%= user.username %></span>
       </a>
-      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+      <ul class='dropdown-menu text-small shadow' aria-labelledby='dropdown'>
         <li>
-          <a href="#" class="dropdown-item">
+          <a href='#' class='dropdown-item'>
             <%= bootstrap_icon 'gear-fill', style:'color: 514c85'%>
-            <span class="ms-1">Settings</span>
+            <span class='ms-1'>Settings</span>
           </a>
         </li>
         <li>
-          <a href="#" class="dropdown-item">
+          <a href='#' class='dropdown-item'>
             <%= bootstrap_icon 'person-circle', style:'color: 514c85'%>
-            <span class="ms-1">Profile</span>
+            <span class='ms-1'>Profile</span>
           </a>
         </li>
         <li>
-            <hr class="dropdown-divider">
+            <hr class='dropdown-divider'>
         </li>
         <li>
         <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { turbo_method: :delete } do %>
           <%= bootstrap_icon 'box-arrow-in-right', style: 'color: 514c85' %>
-          <span class="ms-1">Logout</span>
+          <span class='ms-1'>Logout</span>
         <% end %>
         </li>
       </ul>
     </div>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type='button' class='btn-close' data-bs-dismiss='offcanvas' aria-label='Close'></button>
   </div>
-  <div class="offcanvas-body">
-      <div class="cover-logo">
+  <div class='offcanvas-body'>
+      <div class='cover-logo'>
         <%= image_tag 'header-logo', class:'img-fluid'%>
       </div>
-      <ul class="nav flex-column mb-sm-auto mb-0 align-items-start" id="menu">
-        <li class="nav-item">
-          <a href="#" class="nav-link ">
+      <ul class='nav flex-column mb-sm-auto mb-0 align-items-start' id='menu'>
+        <li class='nav-item'>
+          <a href='#' class='nav-link '>
               <%= bootstrap_icon 'star-fill', style:'color: 514c85'%>
-              <span class="ms-1">Star Tasks</span>
+              <span class='ms-1'>Star Tasks</span>
           </a>
         </li>
-        <li class="w-100" data-bs-toggle="collapse" href="#user_categories" role="button" aria-expanded="false" aria-controls="user_categories">
-          <a class="text-decoration-none nav-link ">
+        <%= link_to categories_path, class: 'nav-item text-decoration-none' do %>
+          <div class="nav-link">
             <%= bootstrap_icon 'grid-fill', style:'color: 514c85'%>
-            <span class="ms-1 text-light">Category</span>
-          </a>
-          <div class="collapse" id="user_categories">
-            <div class="card bg-dark border border-0">
-             <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark border border-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                  <%= bootstrap_icon 'list-task'%>
-                  <span class="ms-1">All</span>
-                  </font></font><span class="badge bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark border border-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                  <%= bootstrap_icon 'list-task'%>
-                  <span class="ms-1">Work</span>
-                  </font></font><span class="badge bg-primary rounded-pill"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark border border-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                  <%= bootstrap_icon 'list-task'%>
-                  <span class="ms-1">Personal</span>
-                  </font></font><span class="badge bg-primary rounded-pill"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-dark border border-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                  <%= bootstrap_icon 'list-task'%>
-                  <span class="ms-1">Wishlist</span>
-                  </font></font><span class="badge bg-primary rounded-pill"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></span>
-                </li>
-                 <li class="list-group-item d-flex justify-content-between align-items-center bg-dark border border-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                  <%= bootstrap_icon 'plus', style:'color: 514c85'%>
-                  <span class="ms-1">Create New</span>
-                </li>
-              </ul>
-            </div>
+            <span class='ms-1'>Categories</span>
+          </div>
+        <% end %>
+        <li class='category-list w-100 nav-item'>
+          <div class='card bg-dark border border-0'>
+            <ul class='list-group'>
+              <%= link_to tasks_path , class: 'list-group-item d-flex justify-content-between align-items-center bg-dark border border-0' do %>
+                <font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>
+                <%= bootstrap_icon 'list-task'%>
+                <span class='ms-1'>All</span>
+                </font></font><span class='badge bg-primary rounded-pill'><%= user.total_tasks %></span>
+              <% end %>
+              <%= render partial: 'categories/category_tab', collection: user.categories, as: :category %>
+            </ul>
           </div>
         </li>
         <li>
-          <a href="#" class="nav-link ">
+          <a href='#' class='nav-link '>
             <%= bootstrap_icon 'card-text', style:'color: 514c85'%>
-            <span class="ms-1">Feedback</span>
+            <span class='ms-1'>Feedback</span>
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link">
+          <a href='#' class='nav-link'>
             <%= bootstrap_icon 'question-diamond-fill', style:'color: 514c85'%>
-            <span class="ms-1">FAQ</span>
+            <span class='ms-1'>FAQ</span>
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link ">
+          <a href='#' class='nav-link'>
               <%= bootstrap_icon 'gear-fill', style:'color: 514c85'%>
-            <span class="ms-1">Settings</span>
+            <span class='ms-1'>Settings</span>
           </a>
         </li>
       </ul>
