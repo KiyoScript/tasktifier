@@ -24,7 +24,7 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install Node.js
-ARG NODE_VERSION=20.2.0
+ARG NODE_VERSION=16.20.2
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
@@ -54,7 +54,7 @@ COPY --link . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE=ENV["RAILS_MASTER_KEY"] ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
 
 # Final stage for app image
