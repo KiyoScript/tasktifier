@@ -3,8 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "popper"
 import "bootstrap"
-import "flatpicker"
-
+import "jquery"
 Turbo.setConfirmMethod(()=>{
   let dialog = document.getElementById("turbo-confirm")
   dialog.showModal()

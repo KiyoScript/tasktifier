@@ -6,5 +6,5 @@ pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin "popper", to: "popper.js", preload: true
 pin "bootstrap", to: "bootstrap.min.js", preload: true
-pin "flatpicker", to: "flatpicker.js", preload: true
+pin "jquery", to: "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
