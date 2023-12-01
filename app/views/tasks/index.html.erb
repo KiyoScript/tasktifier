@@ -67,7 +67,7 @@
               </div>
             <% end %>
           </div>
-          <%= render partial: 'tasks/category_pane', collection: user.categories, as: :category %>
+          <%= render partial: 'tasks/category_pane', collection: user.categories, as: :category, locals: { user: user } %>
         </div>
       </div>
 
