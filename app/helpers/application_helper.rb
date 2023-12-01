@@ -1,7 +1,4 @@
 module ApplicationHelper
-  def username
-    current_user.email.split('@')[0]
-  end
 
   def desktop_device?
     client = request.user_agent
@@ -34,5 +31,9 @@ module ApplicationHelper
     formatted_time = time.strftime("%I:%M %p")
 
     formatted_time
+  end
+
+  def remove_whitespace(text)
+    text.gsub(/\s+/, '')
   end
 end

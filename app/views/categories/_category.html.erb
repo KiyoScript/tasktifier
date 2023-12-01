@@ -1,0 +1,30 @@
+<div class='list-group-item d-flex justify-content-between align-items-center bg-dark border border-0'>
+  <div class="d-flex align-items-center justify-content-center gap-2">
+    <%= bootstrap_icon 'circle-fill', style: 'color: 514c85' %><span class='ms-2'><%= category.name.capitalize %></span>
+  </div>
+
+  <div class="nav-item dropdown">
+    <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <%= bootstrap_icon 'three-dots-vertical' %>
+    </a>
+    <div class="dropdown-menu">
+      <div class="dropdown-item" type='button' data-bs-toggle='modal' data-bs-target='#show_category_<%= dom_id(category)%>_modal'>Edit</div>
+      <%= link_to category_path(category), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure' },class: 'text-decoration-none dropdown-item text-danger', title: 'Delete' do %>
+        Delete
+      <% end %>
+    </div>
+    <div class="modal fade" id="show_category_<%= dom_id(category)%>_modal" tabindex="-1" aria-labelledby="show_category_<%= dom_id(category)%>_modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class='fw-bold text-light mb-0'>Edit category</p>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <%= turbo_frame_tag :edit_category_frame, src: edit_category_path(category) do %>
+            Loading...
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<ul class='list-group list-group-horizontal bg-primary d-md-none fixed-bottom'>
+  <li class='list-group-item d-md-none d-flex align-items-center' data-bs-toggle='offcanvas' data-bs-target='#sideNav' aria-controls='sideNav' style='background-color: #514c85'>
+      <%= bootstrap_icon 'list' %>
+  </li>
+  <%= link_to tasks_path , class: 'list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none' do %>
+    <%= bootstrap_icon 'list-task' %>
+    <p class='mb-0' style='font-size: .5rem'>Tasks</p>
+  <% end %>
+  <%= link_to categories_path , class: 'list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none' do %>
+    <%= bootstrap_icon 'grid-fill' %>
+    <p class='mb-0' style='font-size: .5rem'>Categories</p>
+  <% end %>
+  <li class='list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100'>
+    <%= bootstrap_icon 'person' %>
+    <p class='mb-0' style='font-size: .5rem'>Mine</p>
+  </li>
+</ul>

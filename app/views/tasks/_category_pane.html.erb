@@ -1,0 +1,7 @@
+<div class='tab-pane fade' id='<%= remove_whitespace(category.name) %>' role='tabpanel'>
+  <% unless category.tasks.any? %>
+    <%= render partial: 'tasks/no_task', locals: { user: category.user }%>
+  <% else %>
+    <%= render partial: 'tasks/task', collection: category.tasks %>
+  <% end %>
+</div>

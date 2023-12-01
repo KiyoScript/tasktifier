@@ -13,7 +13,7 @@
 </head>
   <body>
     <%= render partial: 'layouts/common/flash_message'%>
-    <%= render partial: 'layouts/sidenav'%>
+    <%= render partial: 'layouts/sidenav' if user_signed_in? %>
     <%= yield %>
     <%= render partial: "layouts/common/confirm_dialog" %>
   </body>

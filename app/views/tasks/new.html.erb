@@ -8,7 +8,8 @@
         </div>
         <div class="mb-3">
           <%= form.label :category, class: 'form-label' %>
-          <%= form.select :category, ['Work', 'Personal', 'Wishlist', 'Birthday'], { include_blank: 'No Category' }, class: 'form-select bg-dark text-light', id: 'category' %>        </div>
+          <%= form.select :category, options_for_select(current_user.categories.pluck(:name, :id)), { include_blank: 'No Category' }, class: 'form-select bg-dark text-light', id: 'category' %>
+        </div>
         <div class="mb-3">
           <%= form.label :due_date, class: 'form-label' %>
           <%= form.date_field :due_date, class: 'form-control bg-dark text-light', id: "due_date", value: Date.tomorrow %>

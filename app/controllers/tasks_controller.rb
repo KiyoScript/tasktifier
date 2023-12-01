@@ -18,7 +18,7 @@ class TasksController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.prepend('tasks', partial: 'tasks/task', locals: { task: @task }) }
         format.html { redirect_to root_path, notice: "Task added successfully!" }
       else
-        format.html { redirect_to root_path, alert: "Oops! Something went wrong while adding the task." }
+        format.html { redirect_to root_path, alert: @task.errors.full_messages.join(', ') }
       end
     end
   end
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: 'tasks/task', locals: { task: @task }) }
         format.html { redirect_to root_path, notice: "Task updated successfully!" }
       else
-        format.html { redirect_to root_path, alert: "Oops! Something went wrong while updating the task." }
+        format.html { redirect_to root_path, alert: @task.errors.full_messages.join(', ') }
       end
     end
   end
@@ -60,7 +60,8 @@ class TasksController < ApplicationController
       :repeat,
       :mark_as_done,
       :reminder_at,
-      :attachment
+      :attachment,
+      :category_id
     ).merge(user_id: current_user.id)
   end
 end

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row p-2 px-0">
+    <div class="col-12 d-flex flex-row gap-3">
+      <%= link_to root_path do %>
+        <%= bootstrap_icon 'arrow-left', width: '1.5rem' %>
+      <% end %>
+      <p class='text-light fw-bold'>Manage Categories</p>
+    </div>
+    <div class="col-12 px-0">
+      <div class="card-header bg-primary border border-0 text-light fw-light text-center p-2">
+        Categories display on homepage
+      </div>
+      <div class="card-body">
+        <ul class='d-flex flex-column p-4 gap-2'>
+          <%= render partial: 'categories/category', collection: @categories %>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <div class='d-flex flex-column py-4 px-3'>
+          <div class='ms-1 list-group-item d-flex align-items-center bg-dark border border-0' type='button' data-bs-toggle='modal' data-bs-target='#new_category_modal'>
+            <%= bootstrap_icon 'plus', width: '1.5rem', style:'color: 514c85'%>
+            <span class='ms-2 fw-bold' style='color: #514c85'>Create New</span>
+          </div>
+          <div class='modal fade' id='new_category_modal' tabindex='-1' aria-labelledby='new_category_modalLabel' aria-hidden='true'>
+            <div class='modal-dialog modal-dialog-centered'>
+              <div class='modal-content'>
+                <div class='modal-header'>
+                  <p class='fw-bold text-light mb-0'>New category</p>
+                  <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                </div>
+                <%= turbo_frame_tag :new_category_frame, src: new_category_path do %>
+                  Loading...
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
