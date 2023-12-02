@@ -59,12 +59,7 @@
             <% unless @tasks.present? %>
               <%= render partial: 'tasks/no_task', locals: { user: user }%>
             <% else %>
-              <div class='w-100 pt-2' data-bs-toggle='collapse' href='#future' role='button' aria-expanded='false' aria-controls='future'>
-                <a class='text-decoration-none nav-link '>
-                  <span class='ms-1 text-light dropdown-toggle'>Future</span>
-                </a>
-                <%= render partial: 'tasks/task', collection: @tasks %>
-              </div>
+              <%= render partial: 'tasks/task', collection: @tasks %>
             <% end %>
           </div>
           <%= render partial: 'tasks/category_pane', collection: user.categories, as: :category, locals: { user: user } %>
