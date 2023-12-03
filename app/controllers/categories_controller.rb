@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
       if @category.save
         format.html { redirect_to root_path, notice: "Category added successfully!" }
       else
-        format.html { redirect_to root_path, alert: @category.errors.full_messages.join(', ') }
+        format.html { redirect_to root_path, alert: @category.errors.full_messages.first }
       end
     end
   end
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
       if @category.update(category_params)
         format.html { redirect_to root_path, notice: "Category updated successfully!" }
       else
-        format.html { redirect_to root_path, alert: @category.errors.full_messages.join(', ') }
+        format.html { redirect_to root_path, alert: @category.errors.full_messages.first }
       end
     end
   end
