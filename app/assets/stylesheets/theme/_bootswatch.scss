@@ -110,6 +110,15 @@
   }
 }
 
+
+
+@media (max-width: 768px) {
+  .collapse {
+    display: none;
+  }
+}
+
+
 // Buttons
 
 .btn {
