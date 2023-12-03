@@ -11,13 +11,13 @@
       <ul class='dropdown-menu text-small shadow' aria-labelledby='dropdown'>
         <li>
           <a href='#' class='dropdown-item'>
-            <%= bootstrap_icon 'gear-fill', style:'color: 514c85'%>
+            <%= bootstrap_icon 'gear-fill', class: 'text-warning' %>
             <span class='ms-1'>Settings</span>
           </a>
         </li>
         <li>
           <a href='#' class='dropdown-item'>
-            <%= bootstrap_icon 'person-circle', style:'color: 514c85'%>
+            <%= bootstrap_icon 'person-circle', class: 'text-warning'%>
             <span class='ms-1'>Profile</span>
           </a>
         </li>
@@ -26,7 +26,7 @@
         </li>
         <li>
         <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item', data: { turbo_method: :delete } do %>
-          <%= bootstrap_icon 'box-arrow-in-right', style: 'color: 514c85' %>
+          <%= bootstrap_icon 'box-arrow-in-right', class: 'text-warning' %>
           <span class='ms-1'>Logout</span>
         <% end %>
         </li>
@@ -41,13 +41,13 @@
       <ul class='nav flex-column mb-sm-auto mb-0 align-items-start' id='menu'>
         <li class='nav-item'>
           <a href='#' class='nav-link '>
-              <%= bootstrap_icon 'star-fill', style:'color: 514c85'%>
+              <%= bootstrap_icon 'star-fill', class: 'text-warning'%>
               <span class='ms-1'>Star Tasks</span>
           </a>
         </li>
         <%= link_to categories_path, class: 'nav-item text-decoration-none' do %>
           <div class="nav-link">
-            <%= bootstrap_icon 'grid-fill', style:'color: 514c85'%>
+            <%= bootstrap_icon 'grid-fill', class: 'text-warning'%>
             <span class='ms-1'>Categories</span>
           </div>
         <% end %>
@@ -66,19 +66,19 @@
         </li>
         <li>
           <a href='#' class='nav-link '>
-            <%= bootstrap_icon 'card-text', style:'color: 514c85'%>
+            <%= bootstrap_icon 'card-text', class: 'text-warning'%>
             <span class='ms-1'>Feedback</span>
           </a>
         </li>
         <li>
           <a href='#' class='nav-link'>
-            <%= bootstrap_icon 'question-diamond-fill', style:'color: 514c85'%>
+            <%= bootstrap_icon 'question-diamond-fill', class: 'text-warning'%>
             <span class='ms-1'>FAQ</span>
           </a>
         </li>
         <li>
           <a href='#' class='nav-link'>
-              <%= bootstrap_icon 'gear-fill', style:'color: 514c85'%>
+              <%= bootstrap_icon 'gear-fill', class: 'text-warning'%>
             <span class='ms-1'>Settings</span>
           </a>
         </li>
