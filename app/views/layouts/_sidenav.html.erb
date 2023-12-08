@@ -6,20 +6,14 @@
         <span class='ms-1'>
           <%= image_tag 'logo', class: 'img-fluid'%>
         </span>
-        <span class='ms-1 text-light'><%= user.username %></span>
+        <span class='ms-1 text-light'><%= username %></span>
       </a>
       <ul class='dropdown-menu text-small shadow' aria-labelledby='dropdown'>
         <li>
-          <a href='#' class='dropdown-item'>
-            <%= bootstrap_icon 'gear-fill', class: 'text-warning' %>
-            <span class='ms-1'>Settings</span>
-          </a>
-        </li>
-        <li>
-          <a href='#' class='dropdown-item'>
+          <%= link_to account_profile_index_path, class: 'dropdown-item' do %>
             <%= bootstrap_icon 'person-circle', class: 'text-warning'%>
             <span class='ms-1'>Profile</span>
-          </a>
+          <% end  %>
         </li>
         <li>
             <hr class='dropdown-divider'>

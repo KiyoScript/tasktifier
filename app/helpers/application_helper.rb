@@ -36,4 +36,12 @@ module ApplicationHelper
   def remove_whitespace(text)
     text.gsub(/\s+/, '')
   end
+
+  def profile_picture
+    current_user.avatar.presence || image_path("default_male")
+  end
+
+  def username
+    current_user.username? ? current_user.username : current_user.email.split('@')[0]
+  end
 end
