@@ -4,15 +4,15 @@
     <div class='dropdown'>
       <a href='#' class='nav-link dropdown-toggle ' id='dropdown' data-bs-toggle='dropdown' aria-expanded='false'>
         <span class='ms-1'>
-          <%= image_tag 'logo', class: 'img-fluid'%>
+          <%= image_tag profile_picture, class: 'rounded-circle', style:"width: 2rem; height: 2rem;"%>
         </span>
         <span class='ms-1 text-light'><%= username %></span>
       </a>
       <ul class='dropdown-menu text-small shadow' aria-labelledby='dropdown'>
         <li>
-          <%= link_to account_profile_index_path, class: 'dropdown-item' do %>
+          <%= link_to account_profile_index_path(tab: ""), class: 'dropdown-item' do %>
             <%= bootstrap_icon 'person-circle', class: 'text-warning'%>
-            <span class='ms-1'>Profile</span>
+            <span class='ms-1'>View Profile</span>
           <% end  %>
         </li>
         <li>
@@ -71,10 +71,10 @@
           </a>
         </li>
         <li>
-          <a href='#' class='nav-link'>
-              <%= bootstrap_icon 'gear-fill', class: 'text-warning'%>
+          <%= link_to account_profile_index_path(tab: "settings"), class: 'nav-link text-decoration-none' do %>
+            <%= bootstrap_icon 'gear-fill', class: 'text-warning'%>
             <span class='ms-1'>Settings</span>
-          </a>
+          <% end %>
         </li>
       </ul>
     </div>
