@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def profile_picture
-    current_user.avatar.presence || image_path("default_male")
+    current_user.avatar.presence || current_user.gender_male? ? image_path("default_male") : image_path("default_female")
   end
 
   def username

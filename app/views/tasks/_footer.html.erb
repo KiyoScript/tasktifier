@@ -10,8 +10,9 @@
     <%= bootstrap_icon 'grid-fill' %>
     <p class='mb-0' style='font-size: .5rem'>Categories</p>
   <% end %>
-  <li class='list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100'>
+
+  <%= link_to account_profile_index_path, class: 'list-group-item d-md-none d-flex flex-column align-items-center justify-content-center w-100' do %>
     <%= bootstrap_icon 'person' %>
     <p class='mb-0' style='font-size: .5rem'>Mine</p>
-  </li>
+  <% end %>
 </ul>

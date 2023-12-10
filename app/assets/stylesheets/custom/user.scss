@@ -1,0 +1,33 @@
+.profile {
+  .modal-list>dd {
+    font-size: 14px;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+
+  .profile-picture {
+    position: relative;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    border: solid 1px #E5E4E2;
+
+    .edit-icon {
+      position: absolute;
+      border: solid 1px #E5E4E2;
+      border-radius: 50%;
+      padding: 1px 6px;
+      background: transparent;
+      top: 87%;
+      left: 85%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .btn-light {
+    background-color: #E5E4E2;
+  }
+}

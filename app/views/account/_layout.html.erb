@@ -1,0 +1,20 @@
+<div class="container py-3 py-sm-5 px-sm-0">
+  <div class="row profile">
+    <aside class="col-12 col-lg-3 text-center p-3">
+      <div class="d-flex align-items-start">
+        <%= link_to root_path, class: 'text-decoration-none text-warning' do %>
+          <%= bootstrap_icon 'arrow-left', width: '1.2rem' %>
+        <% end %>
+      </div>
+      <div class="border border-0">
+        <%= render "account/profile/form/change_avatar" %>
+        <h5 class="py-2"><%= username %></h5>
+        <hr class="mx-4 my-4">
+        <p class="text-warning">Total Tasks: <span class="text-info"><%= current_user.tasks.count %></span></p>
+      </div>
+    </aside>
+    <div class="col-12 col-lg-9 pt-5">
+      <%= yield %>
+    </div>
+  </div>
+</div>
