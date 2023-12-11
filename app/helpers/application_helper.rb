@@ -38,9 +38,12 @@ module ApplicationHelper
   end
 
   def profile_picture
-    current_user.avatar.presence || current_user.gender_male? ? image_path("default_male") : image_path("default_female")
+    if current_user.avatar.presence
+      current_user.avatar
+    else
+      current_user.gender_male? ? image_path("default_male") : image_path("default_female")
+    end
   end
-
   def username
     current_user.username? ? current_user.username : current_user.email.split('@')[0]
   end
