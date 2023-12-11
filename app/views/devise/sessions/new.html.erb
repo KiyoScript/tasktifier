@@ -39,7 +39,10 @@
             </div>
           <% end %>
           <hr>
-            <a href="#" class="nav-link btn-outline-primary text-center">Sign in with Google</a>
+            <%= link_to user_google_oauth2_omniauth_authorize_path, class: "nav-link btn-outline-primary text-center" do %>
+              <%= bootstrap_icon 'google', class: 'text-warning', width: '1.5rem' %>
+               Sign in with Google
+            <% end %>
           <hr>
         </div>
         <div class="col-12 d-flex align-items-center justify-content-center flex-column">
