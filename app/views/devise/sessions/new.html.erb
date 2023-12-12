@@ -39,7 +39,14 @@
             </div>
           <% end %>
           <hr>
-            <a href="#" class="nav-link btn-outline-primary text-center">Sign in with Google</a>
+            <%- if devise_mapping.omniauthable? %>
+              <% resource_class.omniauth_providers.each do |provider| %>
+                <div class="d-flex flex-row align-items-center justify-content-center gap-2">
+                  <%= bootstrap_icon 'google', class: 'text-warning', width: '1.5rem' %>
+                  <%= button_to "Sign in with Google", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: 'nav-link btn-outline-primary text-center' %>
+                </div>
+              <% end %>
+            <% end %>
           <hr>
         </div>
         <div class="col-12 d-flex align-items-center justify-content-center flex-column">

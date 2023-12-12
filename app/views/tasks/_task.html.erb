@@ -55,8 +55,7 @@
           <%= bootstrap_icon 'bell-fill', class: 'ms-2'%><%= bootstrap_icon 'list-task', class: 'ms-2'%>
         </div>
       </div>
-      <%= bootstrap_icon 'star', class: 'col-1'%>
-      <%= button_to task_path(task), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'text-decoration-none dropdown-item text-danger', title: 'Delete' do %>
+      <%= button_to task_path(task), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'text-decoration-none dropdown-item text-danger col-1', title: 'Delete' do %>
         Remove
       <% end %>
     </ul>
@@ -79,20 +78,19 @@
 
 <!-- Mobile Vew -->
 <div class="d-block d-md-none collapse show pt-2" id="future" data-bs-toggle="collapse">
-  <div class="card border border-0">
-    <%= link_to edit_task_path(task), class:' text-decoration-none list-group d-flex flex-row p-2 align-items-center bg-warning' do %>
+  <div class="card border border-0 d-flex align-items-center justify-content-center flex-row bg-warning">
+    <%= link_to edit_task_path(task), class:' text-decoration-none list-group d-flex flex-row p-2 align-items-center bg-warning w-100' do %>
       <input class="form-check-input ms-2 col-1" type="checkbox" name="listGroupRadio" value="">
-      <div class="d-flex flex-column align-items-center col-9">
+      <div class="d-flex flex-column align-items-center col-10">
         <label class="form-check-label" for="future_task_<%= dom_id(task) %>"><%= task.title %></label>
         <div class="d-flex align-items-center">
           <p class="mb-0 text-info"><%= format_due_date(task.due_date) %> <%= format_start_time(task.start_time) %></p>
           <%= bootstrap_icon 'bell-fill', class: 'ms-2'%><%= bootstrap_icon 'list-task', class: 'ms-2'%>
         </div>
       </div>
-      <%= bootstrap_icon 'star', class: 'col-2'%>
     <% end %>
-    <%= button_to task_path(task), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'text-decoration-none dropdown-item text-end p-2 text-danger', title: 'Delete' do %>
-      Remove
+      <%= link_to task_path(task), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'col-2 border border-0' do %>
+      <%= bootstrap_icon 'trash', width: '1.2rem', class: 'text-danger'%>
     <% end %>
   </div>
 </div>
