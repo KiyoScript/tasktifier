@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_03_135438) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_12_082116) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_03_135438) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "google_connects", force: :cascade do |t|
+    t.json "response", null: false
+    t.string "access_token"
+    t.string "refresh_token"
+    t.boolean "active", default: false
+    t.string "uid"
+    t.datetime "token_expire_at"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_google_connects_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.datetime "due_date"
@@ -79,6 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_03_135438) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "google_uid"
+    t.string "google_provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
