@@ -6,8 +6,7 @@ class Task < ApplicationRecord
   enum repeat: {
     once: 0,
     daily: 1,
-    mon_fri: 2,
-    custom: 3
+    mon_fri: 2
   }, _prefix: true
 
   enum mark_as_done: {

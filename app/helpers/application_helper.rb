@@ -11,10 +11,10 @@ module ApplicationHelper
     return unless due_date.present?
 
     formatted_date = if due_date.is_a?(String)
-                       Date.parse(due_date).strftime("%m-%d")
-                     else
-                       due_date.strftime("%m-%d")
-                     end
+                      Date.parse(due_date).strftime("%m-%d")
+                    else
+                      due_date.strftime("%b %d")
+                    end
 
     formatted_date
   end
