@@ -29,10 +29,10 @@ class User < ApplicationRecord
           email: data.email,
           google_uid: access_token.uid,
           google_provider: access_token.provider,
-          google_avatar: data.image,
           gender: 'prefer_not_to_say',
           password: Devise.friendly_token[0,20]
       )
+      user.avatar.attach(io: URI.open(data.image), filename: 'google_avatar.jpg')
     end
     if user.google_uid.nil?
       user.avatar.attach(io: URI.open(data.image), filename: 'google_avatar.jpg')
