@@ -37,6 +37,7 @@ class User < ApplicationRecord
         google_uid: access_token.uid,
         google_provider: access_token.provider,
         gender: 'prefer_not_to_say',
+        role: :regular,
         google_token: access_token.credentials.token,
         google_token_expire_at: access_token.credentials.expires_at,
         google_refresh_token: access_token.credentials.refresh_token,
@@ -52,7 +53,7 @@ class User < ApplicationRecord
       new_token = refresh_token(access_token.credentials.refresh_token)
       user.update(google_token: new_token)
     end
-    Utils::User::GoogleClassroom.new(user).course_work
+  
     user
   end
 
