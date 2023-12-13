@@ -75,7 +75,7 @@
 <br>
 <% @google_classroom_tasks.each do |tasks| %>
   <% tasks[1].each do |task| %>
-    <div class="card border border-0 d-none d-md-block">
+    <div class="card border border-0 d-none d-md-block mb-4">
       <ul class="list-group d-flex flex-row p-2 align-items-center gap-2 bg-primary">
         <input class="form-check-input ms-2 col-2" type="checkbox" name="listGroupRadio" value="">
         <div class="d-flex flex-column align-items-start align-items-md-center col-9" data-bs-toggle="modal">
@@ -84,13 +84,13 @@
             <p class="mb-0 text-info">11-28 1:30 pm</p>
             <%= bootstrap_icon 'bell-fill', class: 'ms-2'%><%= bootstrap_icon 'list-task', class: 'ms-2'%>
           </div>
-          <%= link_to 'Goto Classroom', task[:alternate_link] , class: 'btn btn-primary', target: '_blank' %>
         </div>
+         <%= link_to 'Goto Classroom', task[:alternate_link] , class: 'text-success text-decoration-none', target: '_blank' %>
       </ul>
     </div>
   <% end %>
 <% end %>
-<br>
+
 <!-- Mobile Vew -->
 <div class="d-block d-md-none pt-2" id="future">
   <div class="card border border-0 d-flex align-items-center justify-content-center flex-row bg-primary">
