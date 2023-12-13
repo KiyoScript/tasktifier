@@ -9,30 +9,27 @@ class Utils::User::GoogleClassroom
     classroom_service = Google::Apis::ClassroomV1::ClassroomService.new
     classroom_service.authorization = google_oauth2_token
 
-    class_works = {}
+    category = Category.create( name: 'GoogleClassroom', user_id: @user.id ) if classroom_service.present?
+
     courses.each do |course|
-      class_works[course[:id]] = []
       works = classroom_service.list_course_works(course[:id])
       if works.present?
         works.course_work.each do |work|
           due_date = work.due_date.to_h
           year = due_date[:year]
           next unless year == Date.today.year
-          work_details = {
+
+          Task.create(
             title: work.title,
-            alternate_link: work.alternate_link,
-            creation_time: work.creation_time,
-            description: work.description,
             due_date: work.due_date,
-            due_time: work.due_time,
-            submission_modification_mode: work.submission_modification_mode,
-            work_type: work.work_type
-          }
-          class_works[course[:id]] << work_details
+            notes: work.description,
+            url: work.alternate_link,
+            category_id: category.id,
+            user_id: @user.id
+          )
         end
       end
     end
-    class_works
   end
 
 

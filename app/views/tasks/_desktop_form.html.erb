@@ -18,7 +18,9 @@
       <div class="mb-4">
         <%= form.text_field :title, class: 'form-control bg-body text-light border border-0 px-2', placeholder: 'Input new task here...'%>
       </div>
-
+      <div class="mb-4">
+        <%= link_to "Goto Google Classroom", @task.url, class: 'text-success text-decoration-none ', target: '_blank' %>
+      </div>
       <ul class="list-group ">
         <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
           <div class="col-6 d-flex align-items-center">

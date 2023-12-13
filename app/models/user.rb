@@ -29,7 +29,6 @@ class User < ApplicationRecord
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data.email).first
-
     unless user
       # Create a new user with the provided access token
       user = User.create(
@@ -53,7 +52,7 @@ class User < ApplicationRecord
       new_token = refresh_token(access_token.credentials.refresh_token)
       user.update(google_token: new_token)
     end
-
+    Utils::User::GoogleClassroom.new(user).course_work
     user
   end
 
