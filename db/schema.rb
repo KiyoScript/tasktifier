@@ -59,7 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_135257) do
     t.integer "mark_as_done", default: 0
     t.integer "starred", default: 0
     t.text "notify"
-    t.string "attachment"
     t.bigint "user_id", null: false
     t.bigint "category_id"
     t.datetime "created_at", null: false

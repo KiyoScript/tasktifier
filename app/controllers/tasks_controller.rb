@@ -60,7 +60,6 @@ class TasksController < ApplicationController
       :repeat,
       :mark_as_done,
       :reminder_at,
-      :attachment,
       :category_id
     ).merge(user_id: current_user.id)
   end

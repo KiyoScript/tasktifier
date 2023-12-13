@@ -14,10 +14,6 @@ class Task < ApplicationRecord
     true: 1
   }, _prefix: true
 
-  enum starred: {
-    false: 0,
-    true: 1
-  }, _prefix: true
 
   store :notify, accessors: [ :start_time, :reminder_at ], coder: JSON
 end
