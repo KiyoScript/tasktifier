@@ -29,27 +29,42 @@ class User < ApplicationRecord
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data.email).first
+
     unless user
+      # Create a new user with the provided access token
       user = User.create(
-          email: data.email,
-          google_uid: access_token.uid,
-          google_provider: access_token.provider,
-          gender: 'prefer_not_to_say',
-          password: Devise.friendly_token[0,20],
-          role: 'regular'
+        email: data.email,
+        role: 'regular',
+        google_uid: access_token.uid,
+        google_provider: access_token.provider,
+        gender: 'prefer_not_to_say',
+        google_token: access_token.credentials.token,
+        google_token_expire_at: access_token.credentials.expires_at,
+        google_refresh_token: access_token.credentials.refresh_token,
+
+        password: Devise.friendly_token[0, 20]
       )
       user.avatar.attach(io: URI.open(data.image), filename: 'google_avatar.jpg')
     end
     if user.google_uid.nil?
       user.avatar.attach(io: URI.open(data.image), filename: 'google_avatar.jpg')
-      user.update(google_uid: access_token.uid, google_provider: access_token.provider)
+      user.update(google_uid: access_token.uid, google_provider: access_token.provider, google_token: access_token.credentials.token)
+    elsif access_token.credentials.expires_at.present? && Time.now >= access_token.credentials.expires_at
+      new_token = refresh_token(access_token.credentials.refresh_token)
+      user.update(google_token: new_token)
     end
+
     user
   end
 
-
+  def self.refresh_token(refresh_token)
+    client = OAuth2::Client.new(ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], site: 'https://accounts.google.com')
+    token = OAuth2::AccessToken.new(client, refresh_token)
+    new_token = token.refresh!
+    new_token.token
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     ["username", "email"]
-  end
+  end 
 end
