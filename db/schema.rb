@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_12_082116) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_13_135257) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,39 +51,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_082116) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "google_connects", force: :cascade do |t|
-    t.json "response", null: false
-    t.string "access_token"
-    t.string "refresh_token"
-    t.boolean "active", default: false
-    t.string "uid"
-    t.datetime "token_expire_at"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_google_connects_on_user_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.datetime "due_date"
     t.text "notes"
     t.integer "repeat", default: 0
     t.integer "mark_as_done", default: 0
-    t.integer "starred", default: 0
     t.text "notify"
-    t.string "attachment"
     t.bigint "user_id", null: false
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url"
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
-    t.integer "gender"
+    t.integer "gender", default: 3
     t.integer "role", default: 0, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -94,6 +80,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_082116) do
     t.datetime "updated_at", null: false
     t.string "google_uid"
     t.string "google_provider"
+    t.string "google_token"
+    t.datetime "google_token_expire_at"
+    t.string "google_refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

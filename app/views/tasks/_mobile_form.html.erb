@@ -27,6 +27,9 @@
       <div class="mb-4">
         <%= form.text_field :title, class: 'form-control bg-body text-light border border-0 px-2', placeholder: 'Input new task here...'%>
       </div>
+      <div class="mb-4">
+        <%= link_to "Classroom link", @task.url, class: "btn btn-sm btn-primary text-success" unless @task.url.nil? %>
+      </div>
 
       <ul class="list-group ">
         <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
@@ -69,16 +72,6 @@
           </div>
           <div class="col-6">
             <%= form.text_area :notes, class: 'form-control' %>
-          </div>
-        </li>
-
-
-        <li class="list-group-item bg-dark border border-0  d-flex align-items-center">
-          <div class="col-6 d-flex align-items-center">
-            <%= bootstrap_icon 'paperclip', class: 'text-warning'%><span class="ms-2 text-light">Attachment</span>
-          </div>
-          <div class="col-6">
-            <%= form.file_field :attachment, class: 'form-control' %>
           </div>
         </li>
       </ul>
