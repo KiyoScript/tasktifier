@@ -61,12 +61,12 @@
             <% else %>
                 <% if @google_classroom_tasks.any? %>
                   <h5 class="text-warning">Classworks</h5>
-                  <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false'), locals: { google_classroom_tasks: @google_classroom_tasks } %>
+                  <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false').where.not(url: nil), locals: { google_classroom_tasks: @google_classroom_tasks } %>
                 <% end %>
 
-                <% if @tasks.where(mark_as_done: 'false').any? %>
+                <% if @tasks.where(mark_as_done: 'false', url: nil).any? %>
                   <h5 class="text-warning">Current</h5>
-                  <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false') %>
+                  <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false', url: nil) %>
                 <% end %>
 
                 <% if @tasks.where(mark_as_done: 'true').any? %>

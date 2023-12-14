@@ -60,8 +60,8 @@ module ApplicationHelper
   def user_username(user)
     user.username? ? user.username : user.email.split('@')[0]
   end
-  
-  def truncate_text(text, length = 30, truncate_string = "...")
+
+  def truncate_text(text, length = 20, truncate_string = "...")
     if text.length > length
       text.truncate(length, omission: truncate_string)
     else

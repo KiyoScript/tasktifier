@@ -3,20 +3,13 @@
     <div class="form-group">
       <div class="mb-3 d-flex flex-row justify-content-between">
       <%= form.select :category_id, options_for_select(current_user.categories.where.not(id: @task.category_id).pluck(:name, :id)), { include_blank: @task.category.present? ? @task.category.name : 'No Category' }, class: 'form-select bg-dark text-light', id: 'task_category' %>
-        <div class="nav-item dropdown">
-          <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <%= bootstrap_icon 'three-dots-vertical' %>
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Mark as Done</a>
-            <a class="dropdown-item" href="#">Print</a>
-            <a class="dropdown-item" href="#">Start to Focus</a>
-            <div class="dropdown-item">Share</div>
-          </div>
-        </div>
       </div>
       <div class="mb-4">
         <%= form.text_field :title, class: 'form-control bg-body text-light border border-0 px-2', placeholder: 'Input new task here...'%>
+      </div>
+
+      <div class="mb-4">
+        <input class="form-check-input ms-2 col-2" type="checkbox" name="listGroupRadio" value="<%= @task.id %>" data-controller="mark-as-done"  data-action="change->mark-as-done#updateTask"> Mark as done
       </div>
       <ul class="list-group ">
         <li class="list-group-item bg-dark border border-0  d-flex align-items-center">

@@ -4,7 +4,7 @@ import "controllers"
 import "popper"
 import "bootstrap"
 import "jquery"
-import "@rails/request.js"
+
 Turbo.setConfirmMethod(()=>{
   let dialog = document.getElementById("turbo-confirm")
   dialog.showModal()
