@@ -55,9 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_135257) do
     t.string "title"
     t.datetime "due_date"
     t.text "notes"
-    t.integer "repeat", default: 0
     t.integer "mark_as_done", default: 0
-    t.text "notify"
     t.bigint "user_id", null: false
     t.bigint "category_id"
     t.datetime "created_at", null: false
