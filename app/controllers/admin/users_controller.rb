@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_user!
   include AdminAccessible
 
   before_action :set_user, only: %i[show update destroy]

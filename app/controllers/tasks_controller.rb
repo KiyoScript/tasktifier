@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task
   def index
     @tasks = current_user.tasks.order(created_at: :desc)

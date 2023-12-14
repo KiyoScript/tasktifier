@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :categories
+
+  resources :privacy_policies
 end
