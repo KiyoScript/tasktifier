@@ -214,8 +214,8 @@ GEM
       time
       uri
     orm_adapter (0.5.0)
-    pagy (6.2.0)
     os (1.1.4)
+    pagy (6.2.0)
     pg (1.5.4)
     popper_js (2.11.8)
     presenter-rails (1.0.0)
@@ -276,6 +276,8 @@ GEM
       declarative (< 0.1.0)
       trailblazer-option (>= 0.1.1, < 0.2.0)
       uber (< 0.2.0)
+    requestjs-rails (0.0.11)
+      railties (>= 6.1.0)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -376,6 +378,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   ransack
   redis (~> 5.0)
+  requestjs-rails
   sassc-rails
   selenium-webdriver
   sentry-rails (~> 5.13)

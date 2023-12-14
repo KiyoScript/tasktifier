@@ -5,19 +5,12 @@
         <%= link_to root_path do %>
           <%= bootstrap_icon 'arrow-left' %>
         <% end %>
-
-        <div class="nav-item dropdown">
-          <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <%= bootstrap_icon 'three-dots-vertical' %>
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Mark as Done</a>
-            <a class="dropdown-item" href="#">Print</a>
-            <a class="dropdown-item" href="#">Start to Focus</a>
-            <div class="dropdown-item">Share</div>
-          </div>
-        </div>
       </div>
+    </div>
+
+
+    <div class="mb-4">
+      <input class="form-check-input ms-2 col-2" type="checkbox" name="listGroupRadio" value="<%= @task.id %>" data-controller="mark-as-done"  data-action="change->mark-as-done#updateTask"> Mark as done
     </div>
 
     <div class="form-group">

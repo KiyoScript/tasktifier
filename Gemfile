@@ -95,4 +95,4 @@ gem 'google-apis-classroom_v1'
 gem 'byebug'
 gem 'ransack'
 gem 'pagy'
-
+gem 'requestjs-rails'

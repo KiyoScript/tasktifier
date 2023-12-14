@@ -4,6 +4,7 @@ import "controllers"
 import "popper"
 import "bootstrap"
 import "jquery"
+
 Turbo.setConfirmMethod(()=>{
   let dialog = document.getElementById("turbo-confirm")
   dialog.showModal()
