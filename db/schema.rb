@@ -57,7 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_135257) do
     t.text "notes"
     t.integer "repeat", default: 0
     t.integer "mark_as_done", default: 0
-    t.integer "starred", default: 0
     t.text "notify"
     t.bigint "user_id", null: false
     t.bigint "category_id"
@@ -70,8 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_135257) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
-    t.string "gender", default: "", null: false
-    t.string "role", default: "regular", null: false
+    t.integer "gender", default: 3
+    t.integer "role", default: 0, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

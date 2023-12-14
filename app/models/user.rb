@@ -33,10 +33,8 @@ class User < ApplicationRecord
       # Create a new user with the provided access token
       user = User.create(
         email: data.email,
-        role: 'regular',
         google_uid: access_token.uid,
         google_provider: access_token.provider,
-        gender: 'Prefer not to say',
         role: :regular,
         google_token: access_token.credentials.token,
         google_token_expire_at: access_token.credentials.expires_at,
@@ -53,7 +51,7 @@ class User < ApplicationRecord
       new_token = refresh_token(access_token.credentials.refresh_token)
       user.update(google_token: new_token)
     end
-  
+
     user
   end
 
