@@ -36,7 +36,7 @@ class User < ApplicationRecord
         role: 'regular',
         google_uid: access_token.uid,
         google_provider: access_token.provider,
-        gender: 'prefer_not_to_say',
+        gender: 'Prefer not to say',
         role: :regular,
         google_token: access_token.credentials.token,
         google_token_expire_at: access_token.credentials.expires_at,
@@ -66,5 +66,5 @@ class User < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     ["username", "email"]
-  end 
+  end
 end
