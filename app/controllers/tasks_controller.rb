@@ -56,11 +56,7 @@ class TasksController < ApplicationController
       :title,
       :notes,
       :due_date,
-      :start_time,
-      :starred,
-      :repeat,
       :mark_as_done,
-      :reminder_at,
       :category_id
     ).merge(user_id: current_user.id)
   end
