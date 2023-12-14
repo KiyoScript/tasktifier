@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
+    @google_classroom_tasks = Utils::User::GoogleClassroom.new(current_user).course_work
   end
 
   def show; end
@@ -60,7 +61,6 @@ class TasksController < ApplicationController
       :repeat,
       :mark_as_done,
       :reminder_at,
-      :attachment,
       :category_id
     ).merge(user_id: current_user.id)
   end
