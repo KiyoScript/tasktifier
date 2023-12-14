@@ -1,0 +1,31 @@
+
+<aside class="sidebar d-none d-md-block border-warning border-0 border-end col-md-3 col-lg-2 p-0 bg-tertiary vh-100">
+  <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu" arialabelledby="sidebarMenuLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarMenuLabel">Tasktifier</h5>
+    </div>
+    <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3">
+      <ul class="nav flex-column">
+       <li class="nav-item">
+          <%= link_to root_path, class: "nav-link d-flex align-items-center gap-2 text-warning" do %>
+            <%= bootstrap_icon 'house-fill' %> Home
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_users_path, class: "nav-link d-flex align-items-center gap-2 text-warning #{"active" if controller_name == "users"}" do %>
+            <%= bootstrap_icon 'people-fill' %> Users
+          <% end %>
+        </li>
+      </ul>
+      <hr class="my-4 border-warning">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link d-flex align-items-center gap-2 text-warning', data: { turbo_method: :delete } do %>
+            <%= bootstrap_icon 'box-arrow-left', class: 'text-warning' %>
+            <span class='ms-1'>Logout</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</aside>

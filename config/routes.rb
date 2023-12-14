@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :profile, only: %i[index update destroy]
   end
 
+  namespace :admin do
+    resources :users, only: %i[ index show update]
+  end
+
   resources :tasks
   resources :categories
 end

@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
 
   def desktop_device?
     client = request.user_agent
@@ -44,7 +45,19 @@ module ApplicationHelper
       current_user.gender_male? ? image_path("default_male") : image_path("default_female")
     end
   end
+
+  def user_profile_picture(user)
+    if user.avatar.presence
+      user.avatar
+    else
+      user.gender_male? ? image_path("default_male") : image_path("default_female")
+    end
+  end
   def username
     current_user.username? ? current_user.username : current_user.email.split('@')[0]
+  end
+
+  def user_username(user)
+    user.username? ? user.username : user.email.split('@')[0]
   end
 end

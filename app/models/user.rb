@@ -21,6 +21,11 @@ class User < ApplicationRecord
     prefer_not_to_say: 2
   }, _prefix: true
 
+
+  def admin?
+    role_admin?
+  end
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data.email).first
@@ -30,7 +35,8 @@ class User < ApplicationRecord
           google_uid: access_token.uid,
           google_provider: access_token.provider,
           gender: 'prefer_not_to_say',
-          password: Devise.friendly_token[0,20]
+          password: Devise.friendly_token[0,20],
+          role: 'regular'
       )
       user.avatar.attach(io: URI.open(data.image), filename: 'google_avatar.jpg')
     end
@@ -39,5 +45,11 @@ class User < ApplicationRecord
       user.update(google_uid: access_token.uid, google_provider: access_token.provider)
     end
     user
+  end
+
+
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["username", "email"]
   end
 end

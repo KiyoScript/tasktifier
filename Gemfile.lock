@@ -190,6 +190,7 @@ GEM
       time
       uri
     orm_adapter (0.5.0)
+    pagy (6.2.0)
     pg (1.5.4)
     popper_js (2.11.8)
     presenter-rails (1.0.0)
@@ -233,6 +234,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.1.0)
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rdoc (6.5.0)
       psych (>= 4.0.0)
     redis (5.0.8)
@@ -324,10 +329,12 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-rails_csrf_protection (~> 1.0)
   open-uri
+  pagy
   pg (~> 1.1)
   presenter-rails
   puma (~> 5.0)
   rails (~> 7.0.8)
+  ransack
   redis (~> 5.0)
   sassc-rails
   selenium-webdriver

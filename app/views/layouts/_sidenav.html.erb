@@ -9,6 +9,14 @@
         <span class='ms-1 text-light'><%= username %></span>
       </a>
       <ul class='dropdown-menu text-small shadow' aria-labelledby='dropdown'>
+        <% if current_user.admin? %>
+          <li>
+            <%= link_to admin_users_path, class: 'dropdown-item' do %>
+              <%= bootstrap_icon 'speedometer2', class: 'text-warning' %>
+              <span class='ms-1'> Admin Dashboard </span>
+            <% end %>
+          </li>
+        <% end %>
         <li>
           <%= link_to account_profile_index_path(tab: ""), class: 'dropdown-item' do %>
             <%= bootstrap_icon 'person-circle', class: 'text-warning'%>
