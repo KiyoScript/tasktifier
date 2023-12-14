@@ -12,11 +12,13 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: %i[ index show update]
+    resources :users, only: %i[index show update]
   end
 
   resources :tasks
   resources :categories
 
   resources :privacy_policies
+
+  resources :mark_as_done, only: %i[update]
 end

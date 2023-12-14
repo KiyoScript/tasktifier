@@ -1,0 +1,60 @@
+<div class="card border border-0 d-none d-md-block">
+  <ul class="list-group d-flex flex-row p-2 align-items-center gap-2  bg-secondary">
+    <input class="form-check-input ms-2 col-1" type="checkbox" name="listGroupRadio" value="" checked>
+    <div class="d-flex flex-column align-items-start align-items-md-center col-9" data-bs-toggle="modal" data-bs-target="#show_task_<%= dom_id(task)%>_modal">
+      <label class="form-check-label" for="future_task_<%= dom_id(task) %>"><%= task.title %></label>
+      <div class="d-flex align-items-center">
+        <p class="mb-0 text-info"><%= format_due_date(task.due_date) %> <%= format_start_time(task.start_time) %></p>
+        <%= bootstrap_icon 'bell-fill', class: 'ms-2'%><%= bootstrap_icon 'list-task', class: 'ms-2'%>
+      </div>
+    </div>
+    <%= link_to "Classroom link", task.url, class: "btn btn-sm btn-primary text-success" unless task.url.nil? %>
+  </ul>
+
+  <div class="modal fade" id="show_task_<%= dom_id(task)%>_modal" tabindex="-1" aria-labelledby="show_task_<%= dom_id(task)%>_modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-info"> This task mask as done you can now remove this task. </p>
+          <%= button_to task_path(task), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-sm btn-danger', title: 'Delete' do %>
+            Remove
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<!-- Mobile Vew -->
+<div class="d-block d-md-none pt-2" id="future">
+  <div class="card border border-0 d-flex align-items-center justify-content-center flex-row  bg-secondary">
+    <div class='text-decoration-none list-group d-flex flex-row p-2 align-items-center  bg-secondary w-100 'data-bs-toggle="modal" data-bs-target="#mobile_show_task_<%= dom_id(task)%>_modal">
+      <input class="form-check-input ms-2 col-1" type="checkbox" name="listGroupRadio" value="" checked>
+      <div class="d-flex flex-column align-items-center col-10">
+        <label class="form-check-label" for="future_task_<%= dom_id(task) %>"><%= truncate_text(task.title) %></label>
+        <div class="d-flex align-items-center">
+          <p class="mb-0 text-info"><%= format_due_date(task.due_date) %> <%= format_start_time(task.start_time) %></p>
+          <%= bootstrap_icon 'bell-fill', class: 'ms-2'%><%= bootstrap_icon 'list-task', class: 'ms-2'%>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="mobile_show_task_<%= dom_id(task)%>_modal" tabindex="-1" aria-labelledby="mobile_show_task_<%= dom_id(task)%>_modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-info"> This task mask as done you can now remove this task. </p>
+            <%= button_to task_path(task), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-sm btn-danger', title: 'Delete' do %>
+              Remove
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

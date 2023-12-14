@@ -56,10 +56,23 @@
 
         <div class='tab-content pt-2'>
           <div class='tab-pane fade show active' id='all' role='tabpanel'>
-            <% unless @tasks.present?%>
+            <% unless @tasks.present? %>
               <%= render partial: 'tasks/no_task', locals: { user: user }%>
             <% else %>
-              <%= render partial: 'tasks/task', collection: @tasks, locals: { google_classroom_tasks: @google_classroom_tasks } %>
+                <% if @google_classroom_tasks.any? %>
+                  <h5 class="text-warning">Classworks</h5>
+                  <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false'), locals: { google_classroom_tasks: @google_classroom_tasks } %>
+                <% end %>
+
+                <% if @tasks.where(mark_as_done: 'false').any? %>
+                  <h5 class="text-warning">Current</h5>
+                  <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false') %>
+                <% end %>
+
+                <% if @tasks.where(mark_as_done: 'true').any? %>
+                  <h5 class="text-warning mt-2">Completed</h5>
+                  <%= render partial: 'tasks/completed_task', collection: @tasks.where(mark_as_done: 'true'), as: :task %>
+                <% end %>
             <% end %>
           </div>
           <%= render partial: 'tasks/category_pane', collection: user.categories, as: :category, locals: { user: user } %>
