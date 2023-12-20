@@ -13,6 +13,7 @@
       <ul class="dropdown-menu">
         <%= link_to "View", admin_user_path(user), class: "dropdown-item" %>
         <%= link_to "Delete", admin_user_path(user), class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove '#{user.email}'?" } %>
+        <%= button_to "#{user.status_active? ? 'Deactivate' : 'Activate'}", admin_status_path(user),class: 'dropdown-item text-warning', data: { controller: 'account--deactivation', action: 'click->account--deactivation#updateStatus', confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :patch  %>
       </ul>
     </div>
   </td>

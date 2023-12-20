@@ -1,5 +1,6 @@
 class Account::ProfileController < ApplicationController
   before_action :authenticate_user!
+  before_action :account_deactivation!
 
   def index;end
 
@@ -26,5 +27,11 @@ class Account::ProfileController < ApplicationController
       :email,
       :avatar
     )
+  end
+
+  def account_deactivation!
+    if current_user.status_inactive?
+      redirect_to account_deactivation_index_path, flash: { error: "You are taking a break from Tasktifier" }
+    end
   end
 end

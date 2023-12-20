@@ -21,6 +21,11 @@ class User < ApplicationRecord
     prefer_not_to_say: 2
   }, _prefix: true
 
+  enum status: {
+    active: 0,
+    inactive: 1
+  }, _prefix: true
+
 
   def admin?
     role_admin?

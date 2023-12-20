@@ -12,6 +12,6 @@ User.create(
   email: 'KiyoScript@tasktifier.com',
   gender: 'male',
   role: 'admin',
-  password: 'KiyoScr1p5@MisY23',
-  password_confirmation: 'KiyoScr1p5@MisY23'
+  password: '123123123',
+  password_confirmation: '123123123'
 )
