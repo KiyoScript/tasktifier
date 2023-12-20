@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header text-center">
+      Account deactivation
+    </div>
+    <div class="row bg-dark">
+      <div class="col-12 col-md-6">
+        <div class="card-body">
+          <h5 class="card-title">Do you want to log out?</h5>
+          <p class="card-text">If you want to take a break from tasktifer but keep your profile visible, you can logout.</p>
+          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger w-100', data: { turbo_method: :delete } do %>
+            <%= bootstrap_icon 'box-arrow-in-right', class: 'text-warning' %>
+            <span class='ms-1'>Logout</span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mt-2">
+        <div class="card-footer bg-dark border border-0">
+          <div class="text">
+            <h5 class='card-title'>Reactivating your account</h5>
+            <p class="card-text">If you want to take a break from tasktifer but keep your profile visible, you can logout.</p>
+            <%= button_to "Activate", account_status_path(current_user), class: 'btn btn-outline-danger w-100', data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :patch %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

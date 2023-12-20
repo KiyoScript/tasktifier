@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :account_deactivation!
   before_action :set_category
 
 
@@ -53,5 +54,11 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(
       :name
     ).merge(user_id: current_user.id)
+  end
+
+  def account_deactivation!
+    if current_user.status_inactive?
+      redirect_to account_deactivation_index_path, flash: { error: "You are taking a break from Tasktifier" }
+    end
   end
 end
