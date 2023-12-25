@@ -49,7 +49,7 @@
       </div>
      <!-- Button trigger modal -->
       <div class='container'>
-        <nav class='nav nav-tabs gap-2 flex-row flex-nowrap overflow-auto py-2 <%= @tasks.present? ? '' : 'd-none' %>' style='overflow-y: hidden !important;'>
+        <nav class='nav nav-tabs gap-2 flex-row flex-nowrap py-2 overflow-auto <%= current_user.categories.present? ? '' : 'd-none' %>' style='overflow-y: hidden !important;'>
           <a class='nav-link text-nowrap active' data-bs-toggle='tab' href='#all' role='tab' aria-selected='true'>All</a>
           <%= render partial: 'tasks/category_tab', collection: user.categories, as: :category %>
         </nav>
@@ -64,14 +64,19 @@
                   <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false').where.not(url: nil), locals: { google_classroom_tasks: @google_classroom_tasks } %>
                 <% end %>
 
-                <% if @tasks.where(mark_as_done: 'false', url: nil).any? %>
+                <% if @tasks.where(mark_as_done: 'false', url: nil, status: 'active').any? %>
                   <h5 class="text-warning">Current</h5>
                   <%= render partial: 'tasks/task', collection: @tasks.where(mark_as_done: 'false', url: nil) %>
                 <% end %>
 
-                <% if @tasks.where(mark_as_done: 'true').any? %>
+                <% if @tasks.where(mark_as_done: 'true', status: 'completed').any? %>
                   <h5 class="text-warning mt-2">Completed</h5>
-                  <%= render partial: 'tasks/completed_task', collection: @tasks.where(mark_as_done: 'true'), as: :task %>
+                  <%= render partial: 'tasks/completed_task', collection: @tasks.where(mark_as_done: 'true', status: 'completed'), as: :task %>
+                <% end %>
+
+                <% if @tasks.where(status: 'archived').any? %>
+                  <h5 class="text-warning mt-2">Archived</h5>
+                  <%= render partial: 'tasks/archived_task', collection: @tasks.where(status: 'archived'), as: :task %>
                 <% end %>
             <% end %>
           </div>

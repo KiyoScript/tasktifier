@@ -13,7 +13,7 @@ class Task < ApplicationRecord
     active: 0,
     archived: 1,
     completed: 2
-  }
+  }, _prefix: true
 
   store :notify, accessors: [ :start_time, :reminder_at ], coder: JSON
 end
