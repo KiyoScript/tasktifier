@@ -10,7 +10,7 @@ module AdminAccessible
   protected
 
   def user_restriction!
-    unless current_user.admin?
+    unless current_user.admin?  && current_user.status_active?
       redirect_to root_path, flash: { error: "You are not authorized to access this page" }
     end
   end
