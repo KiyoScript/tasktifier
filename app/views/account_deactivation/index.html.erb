@@ -19,7 +19,7 @@
         <div class="card-footer bg-dark border border-0">
           <div class="text">
             <h5 class='card-title'>Reactivating your account</h5>
-            <p class="card-text">If you want to take a break from tasktifer but keep your profile visible, you can logout.</p>
+            <p class="card-text">If you want to reactivate your account after taking a break from tasktifer, you can click the button below:</p>
             <%= button_to "Activate", account_status_path(current_user), class: 'btn btn-outline-danger w-100', data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :patch %>
           </div>
         </div>
