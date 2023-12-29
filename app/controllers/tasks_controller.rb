@@ -5,6 +5,8 @@ class TasksController < ApplicationController
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
     @google_classroom_tasks = Utils::User::GoogleClassroom.new(current_user).course_work
+
+    render partial: 'tasks/google_classroom_frame' if turbo_frame_request?
   end
 
   def show; end
