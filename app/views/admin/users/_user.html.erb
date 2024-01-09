@@ -5,6 +5,7 @@
   <td><%= user.email %></td>
   <td><%= user.gender %></td>
   <td><%= user.tasks.count %></td>
+  <td class="<%= user.status_active? ? 'text-success' : 'text-danger' %>"><%= user.status %></td>
   <td>
    <div class="btn-group">
       <button class="btn btn-secondary dropdown-toggle text-warning" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -12,7 +13,7 @@
       </button>
       <ul class="dropdown-menu">
         <%= link_to "View", admin_user_path(user), class: "dropdown-item" %>
-        <%= link_to "Delete", admin_user_path(user), class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove '#{user.email}'?" } %>
+        <%= button_to "#{user.status_active? ? 'Deactivate' : 'Activate'}", admin_status_path(user),class: 'dropdown-item text-danger', data: { controller: 'account--deactivation', action: 'click->account--deactivation#updateStatus', confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :patch  %>
       </ul>
     </div>
   </td>

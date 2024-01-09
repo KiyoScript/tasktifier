@@ -1,9 +1,12 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :account_deactivation!
   before_action :set_task
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
     @google_classroom_tasks = Utils::User::GoogleClassroom.new(current_user).course_work
+
+    render partial: 'tasks/google_classroom_frame' if turbo_frame_request?
   end
 
   def show; end
@@ -59,5 +62,10 @@ class TasksController < ApplicationController
       :mark_as_done,
       :category_id
     ).merge(user_id: current_user.id)
+  end
+  def account_deactivation!
+    if current_user.status_inactive?
+      redirect_to account_deactivation_index_path, flash: { error: "You are taking a break from Tasktifier" }
+    end
   end
 end

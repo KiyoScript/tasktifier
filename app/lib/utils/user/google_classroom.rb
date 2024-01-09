@@ -7,22 +7,23 @@ class Utils::User::GoogleClassroom
 
   def course_work
     courses = get_courses
-    
+
     courses.each do |course|
       works = @classroom_service.list_course_works(course[:id])
-      category = Category.find_or_create_by( name: 'GoogleClassroom', user_id: @user.id ) if works.present?
       if works.present?
         works.course_work.each do |work|
           due_date = work.due_date.to_h
           year = due_date[:year]
           next unless year == Date.today.year
-
+          category = Category.find_or_create_by( name: course[:name], user_id: @user.id )
           task = Task.where(
             title: work.title,
             due_date: parse_date(work.due_date.to_h),
             notes: work.description,
             url: work.alternate_link,
+            status: course[:status],
             category_id: category.id,
+            mark_as_done: course[:status] == 'archived' ? 'true' : 'false',
             user_id: @user.id
           ).first_or_create
         end
@@ -40,7 +41,6 @@ private
   def get_courses
     begin
       list_course = @classroom_service.list_courses
-
       return [] if list_course.courses.nil?
       courses = []
 
@@ -49,6 +49,8 @@ private
           course_details = {
             id: course.id,
             name: course.name,
+            status: course.course_state.downcase,
+            description: course.description,
             alternate_link: course.alternate_link
           }
           courses << course_details

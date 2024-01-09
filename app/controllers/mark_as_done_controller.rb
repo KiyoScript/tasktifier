@@ -4,6 +4,7 @@ class MarkAsDoneController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     @task.mark_as_done_true!
-    render json: { success: true, notice: "Task marked as done successfully!" }
+    @task.status_completed!
+    redirect_to tasks_path, notice: "Task marked as done successfully!"
   end
 end

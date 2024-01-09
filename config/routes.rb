@@ -6,13 +6,15 @@ Rails.application.routes.draw do
   }, path: '', path_names: { sign_in: 'sign_in', sign_up: 'sign_up' }
 
   root "tasks#index"
-
+  resources :account_deactivation, only: %i[index]
   namespace :account do
     resources :profile, only: %i[index update destroy]
+    resources :statuses, only: %i[update]
   end
 
   namespace :admin do
     resources :users, only: %i[index show update]
+    resources :statuses, only: %i[update]
   end
 
   resources :tasks
